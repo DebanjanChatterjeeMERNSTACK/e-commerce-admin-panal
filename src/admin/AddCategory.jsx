@@ -10,6 +10,7 @@ import { Oval } from "react-loader-spinner";
 const URL = import.meta.env.VITE_URL;
 
 const AddCategory = () => {
+  const [key, setKey] = useState(Date.now());
   const [categoryvisible, setcategoryvisible] = useState(false);
   const [categorymainmenu, setcategorymainmenu] = useState(false);
   const [categorymainimage, setcategorymainimage] = useState(false);
@@ -33,6 +34,7 @@ const AddCategory = () => {
   const deleteFile = () => {
     setCategoryimage("");
     setfile("");
+    setKey(Date.now());
   };
   function handleChange(e, i) {
     const field = e.target.name;
@@ -411,6 +413,7 @@ const AddCategory = () => {
                       <div className="add_catimgbtn">
                         <span>Upload Image</span>
                         <input
+                          key={key}
                           type="file"
                           className="form-control"
                           id=""
@@ -418,15 +421,16 @@ const AddCategory = () => {
                           accept=".jpg, .jpeg"
                           required
                           onChange={(e) => {
-                            if (!e.target.files || e.target.files.length === 0) return;
+                            if (!e.target.files || e.target.files.length === 0)
+                              return;
 
                             const file = e.target.files[0];
                             const reader = new FileReader();
-                            
+
                             reader.onload = (event) => {
                               setfile(event.target.result); // Base64 URL
                             };
-                          
+
                             reader.readAsDataURL(file);
                             setCategoryimage(file);
                           }}

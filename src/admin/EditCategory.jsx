@@ -6,12 +6,13 @@ import { RxCrossCircled } from "react-icons/rx";
 import { AiFillPlusSquare, AiFillMinusSquare } from "react-icons/ai";
 import Swal from "sweetalert2";
 import { Oval } from "react-loader-spinner";
-import { useParams,useNavigate } from "react-router";
+import { useParams, useNavigate } from "react-router";
 
 const URL = import.meta.env.VITE_URL;
 
 const EditCategory = () => {
   const category_id = useParams().id;
+  const [key, setKey] = useState(Date.now());
   const navigate = useNavigate();
   const [categoryvisible, setcategoryvisible] = useState("");
   const [categorymainmenu, setcategorymainmenu] = useState("");
@@ -37,6 +38,7 @@ const EditCategory = () => {
   const deleteFile = () => {
     setCategoryimage("");
     setfile("");
+    setKey(Date.now());
   };
   function handleChange(e, i) {
     const field = e.target.name;
@@ -111,7 +113,7 @@ const EditCategory = () => {
       .then((data) => {
         setloader(true);
         if (data.status == 200) {
-          navigate("/admin/categories")
+          navigate("/admin/categories");
           Swal.fire({
             title: data.text,
             icon: data.mess, // 'success', 'error', 'warning', 'info', or 'question'
@@ -287,19 +289,22 @@ const EditCategory = () => {
                         value={Categoryorder}
                         onChange={(e) => {
                           const value = e.target.value;
-                      
+
                           // Prevent entering '0' as the first character
                           if (value === "0") {
-                            setCategoryorder(""); 
+                            setCategoryorder("");
                             return;
                           }
-                      
+
                           // Ensure only numbers and restrict value to 1 or greater
                           const numberValue = parseInt(value, 10);
-                          setCategoryorder(isNaN(numberValue) || numberValue < 1 ? "" : numberValue);
+                          setCategoryorder(
+                            isNaN(numberValue) || numberValue < 1
+                              ? ""
+                              : numberValue
+                          );
                         }}
                         min="1"
-                        
                       />
                     </div>
                   </div>
@@ -443,21 +448,23 @@ const EditCategory = () => {
                       <div className="add_catimgbtn">
                         <span>Upload Image</span>
                         <input
+                          key={key}
                           type="file"
                           className="form-control"
                           id=""
                           placeholder="Image"
                           accept=".jpg, .jpeg"
                           onChange={(e) => {
-                            if (!e.target.files || e.target.files.length === 0) return;
+                            if (!e.target.files || e.target.files.length === 0)
+                              return;
 
                             const file = e.target.files[0];
                             const reader = new FileReader();
-                            
+
                             reader.onload = (event) => {
                               setfile(event.target.result); // Base64 URL
                             };
-                          
+
                             reader.readAsDataURL(file);
                             setCategoryimage(file);
                           }}

@@ -70,7 +70,7 @@ const LeftPanel = ({sidebarToggle}) => {
                         <Link to="/admin/pages/home" className={activeIndex === 9 ? "active" : ""} onClick={() => handleClick(9)}>Home Page</Link>
                       </li>
                       <li className="side_nav_item">
-                        <Link to="/admin/pages/shop" className={activeIndex === 10 ? "active" : ""} onClick={() => handleClick(10)}>Shop Page</Link>
+                        <Link to="/admin/pages/slider" className={activeIndex === 10 ? "active" : ""} onClick={() => handleClick(10)}>Slider Section</Link>
                       </li>
                       <li className="side_nav_item">
                         <Link to="/admin/pages/about-us" className={activeIndex === 11 ? "active" : ""} onClick={() => handleClick(11)}>About Us Page</Link>

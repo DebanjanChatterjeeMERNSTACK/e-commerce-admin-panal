@@ -15,7 +15,7 @@ import Customers from "./admin/Customers";
 import ShoppingCart from "./admin/ShoppingCart";
 import Checkout from "./admin/Checkout";
 import Index from "./pages/Index";
-import Shop from "./pages/Shop";
+// import Shop from "./pages/Shop";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import Blog from "./pages/Blog";
@@ -41,6 +41,7 @@ import Shipping from "./pages/Shipping";
 import Refund from "./pages/Refund";
 import Faq from "./pages/Faq";
 import Privacy from "./pages/privacy";
+import Slider from "./pages/Slider";
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -70,7 +71,7 @@ function App() {
         { path: "/admin/shopping-cart", element: <ShoppingCart /> },
         { path: "/admin/checkout", element: <Checkout /> },
         { path: "/admin/pages/home", element: <Index /> },
-        { path: "/admin/pages/shop", element: <Shop /> },
+        { path: "/admin/pages/slider", element: <Slider /> },
         { path: "/admin/pages/about-us", element: <AboutUs /> },
         { path: "/admin/pages/contact-us", element: <ContactUs /> },
         { path: "/admin/pages/blog", element: <Blog /> },
