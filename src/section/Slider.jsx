@@ -287,7 +287,7 @@ const Slider = () => {
                       </div>
                       {id ? (
                         <>
-                          <p>Previous Category Image</p>
+                          <p>Previous Slider Image</p>
                           <img
                             src={preimage}
                             style={{ width: "200px", height: "100px" }}

@@ -41,7 +41,8 @@ import Shipping from "./pages/Shipping";
 import Refund from "./pages/Refund";
 import Faq from "./pages/Faq";
 import Privacy from "./pages/privacy";
-import Slider from "./pages/Slider";
+import Slider from "./section/Slider";
+import Member from "./section/Member";
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -71,7 +72,8 @@ function App() {
         { path: "/admin/shopping-cart", element: <ShoppingCart /> },
         { path: "/admin/checkout", element: <Checkout /> },
         { path: "/admin/pages/home", element: <Index /> },
-        { path: "/admin/pages/slider", element: <Slider /> },
+        { path: "/admin/section/slider", element: <Slider /> },
+        { path: "/admin/section/member", element: <Member /> },
         { path: "/admin/pages/about-us", element: <AboutUs /> },
         { path: "/admin/pages/contact-us", element: <ContactUs /> },
         { path: "/admin/pages/blog", element: <Blog /> },
