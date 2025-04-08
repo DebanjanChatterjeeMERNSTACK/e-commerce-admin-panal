@@ -67,19 +67,19 @@ const ContactUs = () => {
             body: JSON.stringify({ id: id}),
           })
             .then((res) => res.json())
-            .then((data) => {
-              if (data.status == 200) {
+            .then((datas) => {
+              if (datas.status == 200) {
                 Swal.fire({
-                  title: data.text,
-                  icon: data.mess, // 'success', 'error', 'warning', 'info', or 'question'
+                  title: datas.text,
+                  icon: datas.mess, // 'success', 'error', 'warning', 'info', or 'question'
                   confirmButtonText: "Ok",
                 });
-                fetchItems();
-                // setcategory(Category.filter((item) => item._id !== id));
+                // fetchItems();
+                setData(data.filter((item) => item._id !== id));
               } else {
                 Swal.fire({
-                  title: data.text,
-                  icon: data.mess, // 'success', 'error', 'warning', 'info', or 'question'
+                  title: datas.text,
+                  icon: datas.mess, // 'success', 'error', 'warning', 'info', or 'question'
                   confirmButtonText: "Ok",
                 });
               }

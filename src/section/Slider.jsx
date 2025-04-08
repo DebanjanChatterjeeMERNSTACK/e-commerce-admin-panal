@@ -162,24 +162,25 @@ const Slider = () => {
       }),
     })
       .then((response) => response.json())
-      .then((data) => {
+      .then((datas) => {
         setloader(true);
-        if (data.status == 200) {
-          sliderdata();
+        if (datas.status == 200) {
+          // sliderdata();
           setslider_Description("");
           setslider_Title("");
           setid("");
           deleteFile()
           settoggal(false);
           Swal.fire({
-            title: data.text,
-            icon: data.mess, // 'success', 'error', 'warning', 'info', or 'question'
+            title: datas.text,
+            icon: datas.mess, // 'success', 'error', 'warning', 'info', or 'question'
             confirmButtonText: "Ok",
           });
+          setData(data.filter((item) => item._id !== id));
         } else {
           Swal.fire({
-            title: data.text,
-            icon: data.mess, // 'success', 'error', 'warning', 'info', or 'question'
+            title: datas.text,
+            icon: datas.mess, // 'success', 'error', 'warning', 'info', or 'question'
             confirmButtonText: "Ok",
           });
         }
