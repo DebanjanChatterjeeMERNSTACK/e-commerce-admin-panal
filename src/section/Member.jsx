@@ -123,25 +123,24 @@ const Member = () => {
         body: formdata,
       })
         .then((response) => response.json())
-        .then((datas) => {
+        .then((data) => {
           setloader(true);
-          if (datas.status == 200) {
-            // Memberdata();
+          if (data.status == 200) {
+            Memberdata();
             setmember_Position("");
             setmember_Fullname("");
             setid("");
             deleteFile()
             settoggal(false);
             Swal.fire({
-              title: datas.text,
-              icon: datas.mess, // 'success', 'error', 'warning', 'info', or 'question'
+              title: data.text,
+              icon: data.mess, // 'success', 'error', 'warning', 'info', or 'question'
               confirmButtonText: "Ok",
             });
-            setData(data.filter((item) => item._id !== id));
           } else {
             Swal.fire({
-              title: datas.text,
-              icon: datas.mess, // 'success', 'error', 'warning', 'info', or 'question'
+              title: data.text,
+              icon: data.mess, // 'success', 'error', 'warning', 'info', or 'question'
               confirmButtonText: "Ok",
             });
           }
@@ -163,24 +162,25 @@ const Member = () => {
       }),
     })
       .then((response) => response.json())
-      .then((data) => {
+      .then((datas) => {
         setloader(true);
-        if (data.status == 200) {
-          Memberdata();
+        if (datas.status == 200) {
+       //   Memberdata();
           setmember_Position("");
           setmember_Fullname("");
           setid("");
           deleteFile()
           settoggal(false);
           Swal.fire({
-            title: data.text,
-            icon: data.mess, // 'success', 'error', 'warning', 'info', or 'question'
+            title: datas.text,
+            icon: datas.mess, // 'success', 'error', 'warning', 'info', or 'question'
             confirmButtonText: "Ok",
           });
+          setData(data.filter((item) => item._id !== id));
         } else {
           Swal.fire({
-            title: data.text,
-            icon: data.mess, // 'success', 'error', 'warning', 'info', or 'question'
+            title: datas.text,
+            icon: datas.mess, // 'success', 'error', 'warning', 'info', or 'question'
             confirmButtonText: "Ok",
           });
         }
