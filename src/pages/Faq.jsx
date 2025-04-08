@@ -155,7 +155,7 @@ const Faq = () => {
       .then((datas) => {
         setloader(true);
         if (datas.status == 200) {
-          faqdata();
+          // faqdata();
           setanswer("");
           setquestions("");
           setid("");
