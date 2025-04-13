@@ -542,11 +542,11 @@ const LeftPanel = ({ sidebarToggle }) => {
                       </li>
                       <li className="side_nav_item">
                         <Link
-                          to="/admin/settings/media-setting"
+                          to="/admin/settings/pay-setting"
                           className={activeIndex === 22 ? "active" : ""}
                           onClick={() => handleClick(22)}
                         >
-                          Media Setting
+                          Pay Setting
                         </Link>
                       </li>
                     </ul>

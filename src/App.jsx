@@ -23,7 +23,7 @@ import Media from "./appearance/Media";
 import ContactForm from "./appearance/ContactForm";
 import Maps from "./appearance/Maps";
 import AppSetting from "./settings/AppSetting";
-import MediaSetting from "./settings/MediaSetting";
+import PaySetting from "./settings/PaySetting";
 import AppLayout from "./components/AppLayout";
 import BankTransfers from "./admin/BankTransfers";
 import Invoices from "./admin/Invoices";
@@ -86,7 +86,7 @@ function App() {
         { path: "/admin/appearance/contact-form", element: <ContactForm /> },
         // { path: "/admin/appearance/maps", element: <Maps /> },
         { path: "/admin/settings/app-setting", element: <AppSetting /> },
-        { path: "/admin/settings/media-setting", element: <MediaSetting /> },
+        { path: "/admin/settings/pay-setting", element: <PaySetting /> },
         { path: "*", element: <PageNotFound /> },
         { path: "/sellers", element: <Index /> }
       ]
