@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { FaCircleExclamation } from "react-icons/fa6";
 import { Form } from "react-bootstrap";
@@ -10,43 +10,129 @@ import { Oval } from "react-loader-spinner";
 const URL = import.meta.env.VITE_URL;
 
 const PaySetting = () => {
-  const [categoryvisible, setcategoryvisible] = useState(false);
-
-  const [Categoryorder, setCategoryorder] = useState("");
+  const [cashvisible, setcashvisible] = useState(false);
+  const [keyId, setkeyId] = useState("");
   const [toggal, settoggal] = useState(false);
-  const [metaKeywords, setmetaKeywords] = useState("");
-
+  const [keySecret, setkeySecret] = useState("");
+  const [id, setid] = useState("");
   const [loader, setloader] = useState(true);
+
+
+  const fecthdata = () => {
+    fetch(`${URL}/payment_key_get`, {
+      headers: {
+        // auth: document.cookie,
+        login_id: localStorage.getItem("loginid"),
+      },
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.status == 200) {
+          setkeyId(json.Payments.KEY_ID);
+          setkeySecret(json.Payments.KEY_SECRET);
+          setcashvisible(json.Payments.Cash);
+          setid(json.Payments._id);
+          settoggal(true);
+        } else {
+          Swal.fire({
+            title: json.text,
+            icon: json.mess,
+            confirmButtonText: "Ok",
+          });
+          settoggal(false);
+        }
+      });
+  };
+
+
+  useEffect(() => {
+    fecthdata();
+  }, []);
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setloader(false);
-
-    fetch(`${URL}/catagory_save`, {
-      method: "POST",
-      body: formdata,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setloader(true);
-        if (data.status == 200) {
-          Swal.fire({
-            title: data.text,
-            icon: data.mess, // 'success', 'error', 'warning', 'info', or 'question'
-            confirmButtonText: "Ok",
-          });
-          // navigate("/list-catagory");
-        } else {
-          Swal.fire({
-            title: data.text,
-            icon: data.mess, // 'success', 'error', 'warning', 'info', or 'question'
-            confirmButtonText: "Ok",
-          });
-        }
+    if (!toggal) {
+      const payload = {
+        login_id: localStorage.getItem("loginid"),
+        KEY_ID: keyId,
+        KEY_SECRET: keySecret,
+        Cash: cashvisible,
+      };
+      fetch(`${URL}/add_payment_key`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
       })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          setloader(true);
+          if (data.status == 200) {
+            fecthdata();
+            Swal.fire({
+              title: data.text,
+              icon: data.mess, // 'success', 'error', 'warning', 'info', or 'question'
+              confirmButtonText: "Ok",
+            });
+            // navigate("/list-catagory");
+          } else {
+            Swal.fire({
+              title: data.text,
+              icon: data.mess, // 'success', 'error', 'warning', 'info', or 'question'
+              confirmButtonText: "Ok",
+            });
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+
+
+    } else {
+
+
+      const payload = {
+        id: id,
+        KEY_ID: keyId,
+        KEY_SECRET: keySecret,
+        Cash: cashvisible,
+      };
+
+      fetch(`${URL}/payment_key_update`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          payload,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setloader(true);
+          if (data.status == 200) {
+            fecthdata();
+            Swal.fire({
+              title: data.text,
+              icon: data.mess, // 'success', 'error', 'warning', 'info', or 'question'
+              confirmButtonText: "Ok",
+            });
+          } else {
+            Swal.fire({
+              title: data.text,
+              icon: data.mess, // 'success', 'error', 'warning', 'info', or 'question'
+              confirmButtonText: "Ok",
+            });
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
   };
   return (
     <>
@@ -54,32 +140,34 @@ const PaySetting = () => {
         <div className="container-fluid">
           <form onSubmit={handleSubmit}>
             <div className="panel_contentbox">
-              <h5 className="box_title">Add Category</h5>
+              <h5 className="box_title">Razorpay</h5>
               <div className="panel_group">
                 <div className="row">
                   <div className="col-lg-12 col-md-12 col-sm-12">
                     <div className="mb-3">
-                      <label className="form-label">Keywords (Meta Tag)</label>
+                      <label className="form-label">KEY_ID</label>
                       <input
                         type="text"
                         className="form-control"
                         id=""
-                        placeholder="Keywords (Meta Tag)"
-                        value={metaKeywords}
-                        onChange={(e) => setmetaKeywords(e.target.value)}
+                        placeholder="KEY_ID"
+                        value={keyId}
+                        onChange={(e) => setkeyId(e.target.value)}
+                        required
                       />
                     </div>
                   </div>
                   <div className="col-lg-12 col-md-12 col-sm-12">
                     <div className="mb-3">
-                      <label className="form-label">Keywords (Meta Tag)</label>
+                      <label className="form-label">KEY_SECRET</label>
                       <input
                         type="text"
                         className="form-control"
                         id=""
-                        placeholder="Keywords (Meta Tag)"
-                        value={metaKeywords}
-                        onChange={(e) => setmetaKeywords(e.target.value)}
+                        placeholder="KEY_SECRET"
+                        value={keySecret}
+                        onChange={(e) => setkeySecret(e.target.value)}
+                        required
                       />
                     </div>
                   </div>
@@ -90,7 +178,7 @@ const PaySetting = () => {
                     <div className="mb-3">
                       <div className="row">
                         <div className="col-sm-4 col-xs-12">
-                          <label>Visibility</label>
+                          <label>Cash On Delivery</label>
                         </div>
                         <div className="col-sm-4 col-xs-12">
                           <Form.Check
@@ -100,9 +188,9 @@ const PaySetting = () => {
                             id=""
                             value="true"
                             onChange={(e) =>
-                              setcategoryvisible(JSON.parse(e.target.value))
+                              setcashvisible(JSON.parse(e.target.value))
                             }
-                            checked={categoryvisible === true}
+                            checked={cashvisible === true}
                           />
                         </div>
                         <div className="col-sm-4 col-xs-12">
@@ -113,9 +201,9 @@ const PaySetting = () => {
                             id=""
                             value="false"
                             onChange={(e) =>
-                              setcategoryvisible(JSON.parse(e.target.value))
+                              setcashvisible(JSON.parse(e.target.value))
                             }
-                            checked={categoryvisible === false}
+                            checked={cashvisible === false}
                           />
                         </div>
                       </div>
