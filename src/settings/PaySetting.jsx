@@ -115,7 +115,7 @@ const PaySetting = () => {
         .then((data) => {
           setloader(true);
           if (data.status == 200) {
-            fecthdata();
+             fecthdata();
             Swal.fire({
               title: data.text,
               icon: data.mess, // 'success', 'error', 'warning', 'info', or 'question'
