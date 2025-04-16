@@ -43,6 +43,7 @@ import Faq from "./pages/Faq";
 import Privacy from "./pages/privacy";
 import Slider from "./section/Slider";
 import Member from "./section/Member";
+import Flex_image from "./section/Flex_image";
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -73,6 +74,7 @@ function App() {
         { path: "/admin/checkout", element: <Checkout /> },
         { path: "/admin/pages/home", element: <Index /> },
         { path: "/admin/section/slider", element: <Slider /> },
+        { path: "/admin/section/fleximage", element: <Flex_image/> },
         { path: "/admin/section/member", element: <Member /> },
         { path: "/admin/pages/about-us", element: <AboutUs /> },
         { path: "/admin/pages/contact-us", element: <ContactUs /> },

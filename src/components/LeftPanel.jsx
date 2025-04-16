@@ -92,7 +92,7 @@ const LeftPanel = ({ sidebarToggle }) => {
                     }`}
                   >
                     <ul className="side_nav_second_level">
-                      <li className="side_nav_item">
+                      {/* <li className="side_nav_item">
                         <Link
                           to="/admin/pages/home"
                           className={activeIndex === 9 ? "active" : ""}
@@ -100,7 +100,7 @@ const LeftPanel = ({ sidebarToggle }) => {
                         >
                           Home Page
                         </Link>
-                      </li>
+                      </li> */}
 
                       <li className="side_nav_item">
                         <Link
@@ -310,6 +310,15 @@ const LeftPanel = ({ sidebarToggle }) => {
                           onClick={() => handleClick(110)}
                         >
                           Member Section
+                        </Link>
+                      </li>
+                      <li className="side_nav_item">
+                        <Link
+                          to="/admin/section/fleximage"
+                          className={activeIndex === 310 ? "active" : ""}
+                          onClick={() => handleClick(310)}
+                        >
+                          Flex Image Section
                         </Link>
                       </li>
                     </ul>

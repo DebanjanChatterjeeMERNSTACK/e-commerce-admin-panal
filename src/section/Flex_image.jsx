@@ -5,7 +5,7 @@ import { RxCrossCircled } from "react-icons/rx";
 
 const URL = import.meta.env.VITE_URL;
 
-const AppSetting = () => {
+const Flex_image = () => {
   const [key, setKey] = useState(Date.now());
   
   const [file, setfile] = useState("");
@@ -182,6 +182,147 @@ const AppSetting = () => {
                           ""
                         )}
                       </div>
+                      <label className="form-label w-100">LOGO</label>
+                      <div className="add_catimgbtn">
+                        <span>Upload LOGO</span>
+                        <input
+                          key={key}
+                          type="file"
+                          className="form-control"
+                          id=""
+                          placeholder="Image"
+                          accept=".jpg, .jpeg"
+                          required={id?false:true}
+                          onChange={(e) => {
+                            if (!e.target.files || e.target.files.length === 0)
+                              return;
+
+                            const file = e.target.files[0];
+                            const reader = new FileReader();
+
+                            reader.onload = (event) => {
+                              setfile(event.target.result); // Base64 URL
+                            };
+
+                            reader.readAsDataURL(file);
+                            setlogoimage(file);
+                          }}
+                        />
+                      </div>
+                      <div className="add_cat_imgbox">
+                        {file ? (
+                          <>
+                            <img src={file} />
+                            <RxCrossCircled
+                              style={{
+                                color: "red",
+                                fontSize: "20px",
+                                position: "absolute",
+                                top: "0px",
+                                right: "0px",
+                                cursor: "pointer",
+                              }}
+                              onClick={deleteFile}
+                            />
+                          </>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                      <label className="form-label w-100">LOGO</label>
+                      <div className="add_catimgbtn">
+                        <span>Upload LOGO</span>
+                        <input
+                          key={key}
+                          type="file"
+                          className="form-control"
+                          id=""
+                          placeholder="Image"
+                          accept=".jpg, .jpeg"
+                          required={id?false:true}
+                          onChange={(e) => {
+                            if (!e.target.files || e.target.files.length === 0)
+                              return;
+
+                            const file = e.target.files[0];
+                            const reader = new FileReader();
+
+                            reader.onload = (event) => {
+                              setfile(event.target.result); // Base64 URL
+                            };
+
+                            reader.readAsDataURL(file);
+                            setlogoimage(file);
+                          }}
+                        />
+                      </div>
+                      <div className="add_cat_imgbox">
+                        {file ? (
+                          <>
+                            <img src={file} />
+                            <RxCrossCircled
+                              style={{
+                                color: "red",
+                                fontSize: "20px",
+                                position: "absolute",
+                                top: "0px",
+                                right: "0px",
+                                cursor: "pointer",
+                              }}
+                              onClick={deleteFile}
+                            />
+                          </>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                      <label className="form-label w-100">LOGO</label>
+                      <div className="add_catimgbtn">
+                        <span>Upload LOGO</span>
+                        <input
+                          key={key}
+                          type="file"
+                          className="form-control"
+                          id=""
+                          placeholder="Image"
+                          accept=".jpg, .jpeg"
+                          required={id?false:true}
+                          onChange={(e) => {
+                            if (!e.target.files || e.target.files.length === 0)
+                              return;
+
+                            const file = e.target.files[0];
+                            const reader = new FileReader();
+
+                            reader.onload = (event) => {
+                              setfile(event.target.result); // Base64 URL
+                            };
+
+                            reader.readAsDataURL(file);
+                            setlogoimage(file);
+                          }}
+                        />
+                      </div>
+                      <div className="add_cat_imgbox">
+                        {file ? (
+                          <>
+                            <img src={file} />
+                            <RxCrossCircled
+                              style={{
+                                color: "red",
+                                fontSize: "20px",
+                                position: "absolute",
+                                top: "0px",
+                                right: "0px",
+                                cursor: "pointer",
+                              }}
+                              onClick={deleteFile}
+                            />
+                          </>
+                        ) : (
+                          ""
+                        )}
+                      </div>
                       {id ? (
                         <>
                           <p>Previous Logo Image</p>
@@ -233,4 +374,4 @@ const AppSetting = () => {
     </>
   );
 };
-export default AppSetting;
+export default Flex_image;
