@@ -171,7 +171,7 @@ const Flex_image = () => {
                           id=""
                           placeholder="Image"
                           accept=".jpg, .jpeg"
-                          required={id?false:true}
+                          required
                           onChange={(e) => {
                             if (!e.target.files || e.target.files.length === 0)
                               return;
@@ -234,7 +234,7 @@ const Flex_image = () => {
                           id=""
                           placeholder="Image"
                           accept=".jpg, .jpeg"
-                          required={id?false:true}
+                          required
                           onChange={(e) => {
                             if (!e.target.files || e.target.files.length === 0)
                               return;
@@ -299,7 +299,7 @@ const Flex_image = () => {
                           id=""
                           placeholder="Image"
                           accept=".jpg, .jpeg"
-                          required={id?false:true}
+                          required
                           onChange={(e) => {
                             if (!e.target.files || e.target.files.length === 0)
                               return;
@@ -362,7 +362,7 @@ const Flex_image = () => {
                           id=""
                           placeholder="Image"
                           accept=".jpg, .jpeg"
-                          required={id?false:true}
+                          required
                           onChange={(e) => {
                             if (!e.target.files || e.target.files.length === 0)
                               return;
