@@ -304,7 +304,6 @@ const AddProduct = () => {
                       <select
                         className="form-select"
                         aria-label="Default select example"
-                        required
                         value={Productsubcatagory}
                         onChange={(e) => setproductsubcatagory(e.target.value)}
                       >

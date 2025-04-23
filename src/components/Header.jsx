@@ -41,7 +41,7 @@ const Header = ({sidebarToggle, setSidebarToggle}) => {
                               <p className='account_user_deg my-0 fw-normal'>Founder</p>
                             </span>
                           </button>
-                          {isOpen && (
+                          {/* {isOpen && (
                           <div className="dropdown-menu dropdown-menu-end dropdown-menu-animated profile-dropdown">                
                             <div className=" dropdown-header noti-title">
                                 <h6 className="text-overflow m-0">Welcome !</h6>
@@ -59,7 +59,7 @@ const Header = ({sidebarToggle, setSidebarToggle}) => {
                               <span>Logout</span>
                             </Link>
                         </div>
-                          )}
+                          )} */}
                         </li>
                     </ul>
                 </div>
