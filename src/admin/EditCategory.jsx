@@ -6,7 +6,7 @@ import { RxCrossCircled } from "react-icons/rx";
 import { AiFillPlusSquare, AiFillMinusSquare } from "react-icons/ai";
 import Swal from "sweetalert2";
 import { Oval } from "react-loader-spinner";
-import { useParams, useNavigate } from "react-router";
+import { useParams, useNavigate, Link } from "react-router";
 
 const URL = import.meta.env.VITE_URL;
 
@@ -502,6 +502,14 @@ const EditCategory = () => {
                 <div className="row">
                   <div className="col-lg-12 col-md-12 col-sm-12">
                     <div className="btn_groupbox btn_right mt-5">
+                      <Link to={"/admin/categories"}>
+                        <button
+                          class="btn btn-primary btn1"
+                          style={{ marginRight: "10px" }}
+                        >
+                          Back
+                        </button>
+                      </Link>
                       {loader ? (
                         <button className="btn btn-primary btn1">
                           Update Category

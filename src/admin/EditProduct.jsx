@@ -5,7 +5,7 @@ import { FaCircleExclamation } from "react-icons/fa6";
 import { AiFillPlusSquare, AiFillMinusSquare } from "react-icons/ai";
 import Swal from "sweetalert2";
 import { Oval } from "react-loader-spinner";
-import { Link, useParams,useNavigate } from "react-router";
+import { Link, useParams, useNavigate } from "react-router";
 import { RxCrossCircled } from "react-icons/rx";
 
 const URL = import.meta.env.VITE_URL;
@@ -182,7 +182,7 @@ const EditProduct = () => {
       .then((data) => {
         setloader(true);
         if (data.status == 200) {
-          navigate("/admin/products")
+          navigate("/admin/products");
           Swal.fire({
             title: data.text,
             icon: data.mess, // 'success', 'error', 'warning', 'info', or 'question'
@@ -299,10 +299,12 @@ const EditProduct = () => {
                               e.target.value = "";
                               return;
                             }
-                          
-                            const validFiles = selectedFiles.filter((file) => file instanceof File);
+
+                            const validFiles = selectedFiles.filter(
+                              (file) => file instanceof File
+                            );
                             setproductimage(validFiles);
-                          
+
                             const imageUrls = [];
                             validFiles.forEach((file) => {
                               const reader = new FileReader();
@@ -324,13 +326,18 @@ const EditProduct = () => {
                       </p>
                     </div>
                     <div className="d-flex justify-content-start mt-3 mb-3 gap-2">
-                    {
-                    preImage.map((e,i) => {
-                      return <div key={i}>
-                      <img src={e} alt="img" width={"120px"} height={"100px"} />
-                      </div>
-                    })
-                    }
+                      {preImage.map((e, i) => {
+                        return (
+                          <div key={i}>
+                            <img
+                              src={e}
+                              alt="img"
+                              width={"120px"}
+                              height={"100px"}
+                            />
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                   <div className="col-lg-12 col-md-12 col-sm-12">
@@ -362,7 +369,6 @@ const EditProduct = () => {
                       <select
                         className="form-select"
                         aria-label="Default select example"
-                        required
                         value={Productsubcatagory}
                         onChange={(e) => setproductsubcatagory(e.target.value)}
                       >
@@ -970,7 +976,14 @@ const EditProduct = () => {
                 </div>
                 <div className="row">
                   <div className="col-lg-12 col-md-12 col-sm-12">
-                    <div className="btn_groupbox btn_right mt-5">
+                    <div className="btn_groupbox btn_right mt-5 ">
+                      <Link to={"/admin/products"}>
+                        <button
+                          class="btn btn-primary btn1"
+                          style={{marginRight: "10px" }}>
+                          Back
+                        </button>
+                      </Link>
                       {loader ? (
                         <button className="btn btn-primary btn1">
                           Update Product
