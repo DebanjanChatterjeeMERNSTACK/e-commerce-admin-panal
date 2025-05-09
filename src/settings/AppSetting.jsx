@@ -7,18 +7,15 @@ const URL = import.meta.env.VITE_URL;
 
 const AppSetting = () => {
   const [key, setKey] = useState(Date.now());
-  
+
   const [file, setfile] = useState("");
   const [logoimage, setlogoimage] = useState("");
   const [preimage, setpreImage] = useState("");
+  const [title, settitle] = useState("");
 
   const [toggal, settoggal] = useState(false);
   const [loader, setloader] = useState(true);
   const [id, setid] = useState("");
-
- 
- 
- 
 
   const deleteFile = () => {
     setlogoimage(null);
@@ -37,9 +34,10 @@ const AppSetting = () => {
       .then((json) => {
         if (json.status == 200) {
           setpreImage(json.logo.logo);
+          settitle(json.logo.title);
           // console.log(json.logo)
-          setid(json.logo._id)
-          settoggal(true)
+          setid(json.logo._id);
+          settoggal(true);
         } else {
           Swal.fire({
             title: json.text,
@@ -61,6 +59,7 @@ const AppSetting = () => {
       let formdata = new FormData();
       formdata.append("login_id", localStorage.getItem("loginid"));
       formdata.append("logo_Image", logoimage);
+      formdata.append("title", title);
 
       fetch(`${URL}/logo_save`, {
         method: "POST",
@@ -71,7 +70,7 @@ const AppSetting = () => {
           setloader(true);
           if (data.status == 200) {
             logodata();
-            deleteFile()
+            deleteFile();
             Swal.fire({
               title: data.text,
               icon: data.mess, // 'success', 'error', 'warning', 'info', or 'question'
@@ -92,6 +91,7 @@ const AppSetting = () => {
       let formdata = new FormData();
       formdata.append("id", id);
       formdata.append("logo_Image", logoimage);
+      formdata.append("title", title);
 
       fetch(`${URL}/logo_update`, {
         method: "POST",
@@ -122,8 +122,6 @@ const AppSetting = () => {
     }
   };
 
- 
-
   return (
     <>
       <div className="content">
@@ -145,7 +143,7 @@ const AppSetting = () => {
                           id=""
                           placeholder="Image"
                           accept=".jpg, .jpeg"
-                          required={id?false:true}
+                          required={id ? false : true}
                           onChange={(e) => {
                             if (!e.target.files || e.target.files.length === 0)
                               return;
@@ -195,6 +193,25 @@ const AppSetting = () => {
                       )}
                     </div>
                   </div>
+                  <div className="col-lg-12 col-md-12 col-sm-12">
+                    <div className="mb-3">
+                      <label className="form-label">Title (English)</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="cateName"
+                        placeholder="Title"
+                        required={id ? false : true}
+                        value={title}
+                        onChange={(e) =>
+                          settitle(
+                            e.target.value.charAt(0).toUpperCase() +
+                              e.target.value.slice(1)
+                          )
+                        }
+                      />
+                    </div>
+                  </div>
                 </div>
 
                 <div className="row">
@@ -229,7 +246,6 @@ const AppSetting = () => {
           </div>
         </div>
       </div>
-      
     </>
   );
 };

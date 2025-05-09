@@ -1,9 +1,15 @@
-// import { useState } from 'react'
+import { useState, useEffect } from "react";
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 // import './App.css'
 // import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { BrowserRouter, Routes, Route, createBrowserRouter, RouterProvider } from "react-router";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router";
 import PageNotFound from "./admin/PageNotFound";
 import Login from "./admin/Login";
 import ForgotPassword from "./admin/ForgotPassword";
@@ -45,16 +51,46 @@ import Slider from "./section/Slider";
 import Member from "./section/Member";
 import Flex_image from "./section/Flex_image";
 
+const URL = import.meta.env.VITE_URL;
+
 function App() {
-  // const [count, setCount] = useState(0)
+  useEffect(() => {
+    
+    fetch(`${URL}/logo_get`, {
+      headers: {
+        login_id: localStorage.getItem("loginid"),
+      },
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        const favicon = json.logo.logo;
+        const title=json.logo.title
+      
+        if (title) {
+          document.title = title;
+        }
+        if (favicon) {
+          let link =
+            document.querySelector("link[rel~='icon']") ||
+            document.createElement("link");
+          link.rel = "icon";
+          link.href = favicon;
+          document.head.appendChild(link);
+        }
+      })
+      .catch((err) => {
+        console.error("Failed to fetch metadata:", err);
+      });
+  }, []);
 
   const router = createBrowserRouter([
-    { path: "/", 
-      element: <AppLayout />, 
+    {
+      path: "/",
+      element: <AppLayout />,
       children: [
-        { path: "/admin/", element: <Dashboard />},
-        { path:"/admin/login", element: <Login /> },
-        { path: "/admin/forgot-password", element: <ForgotPassword />},
+        { path: "/admin/", element: <Dashboard /> },
+        { path: "/admin/login", element: <Login /> },
+        { path: "/admin/forgot-password", element: <ForgotPassword /> },
         { path: "/admin/products", element: <Products /> },
         { path: "/admin/add-product", element: <AddProduct /> },
         { path: "/admin/edit-product/:id", element: <EditProduct /> },
@@ -64,7 +100,10 @@ function App() {
         { path: "/admin/add-category", element: <AddCategory /> },
         { path: "/admin/edit-category/:id", element: <EditCategory /> },
         { path: "/admin/restore-category", element: <RestoreCategories /> },
-        { path: "/admin/bulk-category-upload", element: <BulkCategoryUpload /> },
+        {
+          path: "/admin/bulk-category-upload",
+          element: <BulkCategoryUpload />,
+        },
         { path: "/admin/orders", element: <Orders /> },
         { path: "/admin/transactions", element: <Transactions /> },
         { path: "/admin/bank-transfers", element: <BankTransfers /> },
@@ -74,32 +113,31 @@ function App() {
         { path: "/admin/checkout", element: <Checkout /> },
         { path: "/admin/pages/home", element: <Index /> },
         { path: "/admin/section/slider", element: <Slider /> },
-        { path: "/admin/section/fleximage", element: <Flex_image/> },
+        { path: "/admin/section/fleximage", element: <Flex_image /> },
         { path: "/admin/section/member", element: <Member /> },
         { path: "/admin/pages/about-us", element: <AboutUs /> },
         { path: "/admin/pages/contact-us", element: <ContactUs /> },
         { path: "/admin/pages/blog", element: <Blog /> },
-        { path: "/admin/pages/terms", element:<Terms/> },
-        { path: "/admin/pages/shipping", element: <Shipping/> },
-        { path: "/admin/pages/refund", element: <Refund/> },
-        { path: "/admin/pages/faq", element:<Faq/> },
-        { path: "/admin/pages/privacy", element:<Privacy/>  },
+        { path: "/admin/pages/terms", element: <Terms /> },
+        { path: "/admin/pages/shipping", element: <Shipping /> },
+        { path: "/admin/pages/refund", element: <Refund /> },
+        { path: "/admin/pages/faq", element: <Faq /> },
+        { path: "/admin/pages/privacy", element: <Privacy /> },
         { path: "/admin/appearance/media", element: <Media /> },
         { path: "/admin/appearance/contact-form", element: <ContactForm /> },
         // { path: "/admin/appearance/maps", element: <Maps /> },
         { path: "/admin/settings/app-setting", element: <AppSetting /> },
         { path: "/admin/settings/pay-setting", element: <PaySetting /> },
         { path: "*", element: <PageNotFound /> },
-        { path: "/sellers", element: <Index /> }
-      ]
+        { path: "/sellers", element: <Index /> },
+      ],
     },
-    
-
   ]);
 
   // return (
   //   <>
-        {/* <BrowserRouter>
+  {
+    /* <BrowserRouter>
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/login" element={<Login />} />
@@ -110,11 +148,15 @@ function App() {
             <Route path="/order-details" element={<OrderDetails />} />
             <Route path="/customers" element={<Customers />} />
             <Route path="/shopping-cart" element={<ShoppingCart />} />
-            <Route path="/checkout" element={<Checkout />} /> */}
+            <Route path="/checkout" element={<Checkout />} /> */
+  }
 
-            {/* <Route path="/sellers" element={<Index />} /> */}
+  {
+    /* <Route path="/sellers" element={<Index />} /> */
+  }
 
-            {/* <Route path="/pages/home" element={<Index />} />
+  {
+    /* <Route path="/pages/home" element={<Index />} />
             <Route path="/pages/shop" element={<Shop />} />
             <Route path="/pages/about-us" element={<AboutUs />} />
             <Route path="/pages/contact-us" element={<ContactUs />} />
@@ -126,15 +168,13 @@ function App() {
             <Route path="/settings/media-setting" element={<MediaSetting />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
-        </BrowserRouter> */}
-
-
-        
+        </BrowserRouter> */
+  }
 
   //   </>
   // )
 
-  return <RouterProvider router={router} />
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
