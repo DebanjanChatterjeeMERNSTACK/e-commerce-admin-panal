@@ -11,12 +11,11 @@ const URL = import.meta.env.VITE_URL;
 
 const PaySetting = () => {
   const [cashvisible, setcashvisible] = useState(false);
-  const [keyId, setkeyId] = useState("");
+  const [tax, settax] = useState(null);
   const [toggal, settoggal] = useState(false);
-  const [keySecret, setkeySecret] = useState("");
+  const [delivery, setdelivery] = useState(null);
   const [id, setid] = useState("");
   const [loader, setloader] = useState(true);
-
 
   const fecthdata = () => {
     fetch(`${URL}/payment_key_get`, {
@@ -28,8 +27,8 @@ const PaySetting = () => {
       .then((res) => res.json())
       .then((json) => {
         if (json.status == 200) {
-          setkeyId(json.Payments.KEY_ID);
-          setkeySecret(json.Payments.KEY_SECRET);
+          settax(json.Payments.Tax);
+          setdelivery(json.Payments.delivery_Charge);
           setcashvisible(json.Payments.Cash);
           setid(json.Payments._id);
           settoggal(true);
@@ -44,12 +43,9 @@ const PaySetting = () => {
       });
   };
 
-
   useEffect(() => {
     fecthdata();
   }, []);
-
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -57,8 +53,8 @@ const PaySetting = () => {
     if (!toggal) {
       const payload = {
         login_id: localStorage.getItem("loginid"),
-        KEY_ID: keyId,
-        KEY_SECRET: keySecret,
+        Tax: tax,
+        delivery_Charge: delivery,
         Cash: cashvisible,
       };
       fetch(`${URL}/add_payment_key`, {
@@ -90,15 +86,11 @@ const PaySetting = () => {
         .catch((error) => {
           console.error("Error:", error);
         });
-
-
     } else {
-
-
       const payload = {
         id: id,
-        KEY_ID: keyId,
-        KEY_SECRET: keySecret,
+        Tax: tax,
+        delivery_Charge: delivery,
         Cash: cashvisible,
       };
 
@@ -115,7 +107,7 @@ const PaySetting = () => {
         .then((data) => {
           setloader(true);
           if (data.status == 200) {
-             fecthdata();
+            fecthdata();
             Swal.fire({
               title: data.text,
               icon: data.mess, // 'success', 'error', 'warning', 'info', or 'question'
@@ -140,33 +132,33 @@ const PaySetting = () => {
         <div className="container-fluid">
           <form onSubmit={handleSubmit}>
             <div className="panel_contentbox">
-              <h5 className="box_title">Razorpay</h5>
+              <h5 className="box_title">Payment Details</h5>
               <div className="panel_group">
                 <div className="row">
                   <div className="col-lg-12 col-md-12 col-sm-12">
                     <div className="mb-3">
-                      <label className="form-label">KEY_ID</label>
+                      <label className="form-label">Tax</label>
                       <input
-                        type="text"
+                        type="number"
                         className="form-control"
                         id=""
-                        placeholder="KEY_ID"
-                        value={keyId}
-                        onChange={(e) => setkeyId(e.target.value)}
+                        placeholder="Tax"
+                        value={tax}
+                        onChange={(e) => settax(e.target.value)}
                         required
                       />
                     </div>
                   </div>
                   <div className="col-lg-12 col-md-12 col-sm-12">
                     <div className="mb-3">
-                      <label className="form-label">KEY_SECRET</label>
+                      <label className="form-label">Delivery Charge</label>
                       <input
-                        type="text"
+                        type="number"
                         className="form-control"
                         id=""
-                        placeholder="KEY_SECRET"
-                        value={keySecret}
-                        onChange={(e) => setkeySecret(e.target.value)}
+                        placeholder="Delevery Charge"
+                        value={delivery}
+                        onChange={(e) => setdelivery(e.target.value)}
                         required
                       />
                     </div>
@@ -217,11 +209,11 @@ const PaySetting = () => {
                       {loader ? (
                         toggal ? (
                           <button className="btn btn-primary btn1">
-                            Update Pay Key
+                            Update Payment Details
                           </button>
                         ) : (
                           <button className="btn btn-primary btn1">
-                            Save Pay Key
+                            Save Payment Details
                           </button>
                         )
                       ) : (
