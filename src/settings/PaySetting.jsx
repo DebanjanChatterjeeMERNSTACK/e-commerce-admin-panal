@@ -137,12 +137,12 @@ const PaySetting = () => {
                 <div className="row">
                   <div className="col-lg-12 col-md-12 col-sm-12">
                     <div className="mb-3">
-                      <label className="form-label">Tax</label>
+                      <label className="form-label">Tax(%)</label>
                       <input
                         type="number"
                         className="form-control"
                         id=""
-                        placeholder="Tax"
+                        placeholder="Tax(%)"
                         value={tax}
                         onChange={(e) => settax(e.target.value)}
                         required
