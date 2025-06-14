@@ -76,7 +76,7 @@ const handleRestore = (id) => {
                 confirmButtonText: "Ok",
               });
               fetchItems();
-              // setcategory(Category.filter((item) => item._id !== id));
+              setData(data.filter((item) => item._id !== id));
             } else {
               Swal.fire({
                 title: data.text,
@@ -116,7 +116,7 @@ const handleRestore = (id) => {
                 icon: data.mess, // 'success', 'error', 'warning', 'info', or 'question'
                 confirmButtonText: "Ok",
               });
-              // fetchItems();
+              fetchItems();
               setData(data.filter((item) => item._id != id));
             } else {
               Swal.fire({
@@ -247,9 +247,9 @@ const handleRestore = (id) => {
                       <th style={{ padding: "10px", border: "1px solid gray" }}>
                         Product Category
                       </th>
-                      <th style={{ padding: "10px", border: "1px solid gray" }}>
+                      {/* <th style={{ padding: "10px", border: "1px solid gray" }}>
                         Product Sub Category
-                      </th>
+                      </th> */}
                       <th style={{ padding: "10px", border: "1px solid gray" }}>
                         product Main Price
                       </th>
@@ -344,11 +344,11 @@ const handleRestore = (id) => {
                         >
                           {item.product_Category}
                         </td>
-                        <td
+                        {/* <td
                           style={{ padding: "10px", border: "1px solid gray" }}
                         >
                           {item.product_Sub_Category}
-                        </td>
+                        </td> */}
                         <td
                           style={{ padding: "10px", border: "1px solid gray" }}
                         >

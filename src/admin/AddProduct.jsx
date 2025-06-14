@@ -4,12 +4,13 @@ import { FaCircleExclamation } from "react-icons/fa6";
 import { AiFillPlusSquare, AiFillMinusSquare } from "react-icons/ai";
 import Swal from "sweetalert2";
 import { Oval } from "react-loader-spinner";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { RxCrossCircled } from "react-icons/rx";
 
 const URL = import.meta.env.VITE_URL;
 
 const AddProduct = () => {
+  const navigator =useNavigate()
   const [Category, setcategory] = useState([]);
   const [SubCategory, setSubcategory] = useState([]);
 
@@ -182,6 +183,7 @@ const AddProduct = () => {
             icon: data.mess, // 'success', 'error', 'warning', 'info', or 'question'
             confirmButtonText: "Ok",
           });
+          navigator("/admin/products")
         } else {
           Swal.fire({
             title: data.text,
@@ -299,7 +301,7 @@ const AddProduct = () => {
                       </select>
                     </div>
                   </div>
-                  <div className="col-lg-12 col-md-12 col-sm-12">
+                  {/* <div className="col-lg-12 col-md-12 col-sm-12">
                     <div className="mb-3">
                       <select
                         className="form-select"
@@ -320,7 +322,7 @@ const AddProduct = () => {
                           })}
                       </select>
                     </div>
-                  </div>
+                  </div> */}
                   {/* <div className='col-lg-12 col-md-12 col-sm-12'>
                   <div className="mb-3">
                     <select className="form-select" aria-label="Default select example">

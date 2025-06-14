@@ -242,9 +242,9 @@ const Products = () => {
                       <th style={{ padding: "10px", border: "1px solid gray" }}>
                         Product Category
                       </th>
-                      <th style={{ padding: "10px", border: "1px solid gray" }}>
+                      {/* <th style={{ padding: "10px", border: "1px solid gray" }}>
                         Product Sub Category
-                      </th>
+                      </th> */}
                       <th style={{ padding: "10px", border: "1px solid gray" }}>
                         product Main Price
                       </th>
@@ -339,11 +339,11 @@ const Products = () => {
                         >
                           {item.product_Category}
                         </td>
-                        <td
+                        {/* <td
                           style={{ padding: "10px", border: "1px solid gray" }}
                         >
                           {item.product_Sub_Category}
-                        </td>
+                        </td> */}
                         <td
                           style={{ padding: "10px", border: "1px solid gray" }}
                         >

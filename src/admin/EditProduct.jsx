@@ -364,7 +364,7 @@ const EditProduct = () => {
                       </select>
                     </div>
                   </div>
-                  <div className="col-lg-12 col-md-12 col-sm-12">
+                  {/* <div className="col-lg-12 col-md-12 col-sm-12">
                     <div className="mb-3">
                       <select
                         className="form-select"
@@ -385,7 +385,7 @@ const EditProduct = () => {
                           })}
                       </select>
                     </div>
-                  </div>
+                  </div> */}
                   {/* <div className='col-lg-12 col-md-12 col-sm-12'>
                   <div className="mb-3">
                     <select className="form-select" aria-label="Default select example">

@@ -250,9 +250,9 @@ const RestoreCategories = () => {
                       <th style={{ padding: "10px", border: "1px solid gray" }}>
                         Category Name
                       </th>
-                      <th style={{ padding: "10px", border: "1px solid gray" }}>
+                      {/* <th style={{ padding: "10px", border: "1px solid gray" }}>
                         Sub Category Name
-                      </th>
+                      </th> */}
                       <th style={{ padding: "10px", border: "1px solid gray" }}>
                         Meta Title
                       </th>

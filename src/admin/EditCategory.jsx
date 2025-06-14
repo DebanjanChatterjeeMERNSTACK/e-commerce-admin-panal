@@ -162,7 +162,7 @@ const EditCategory = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-lg-12 col-md-12 col-sm-12">
+                  {/* <div className="col-lg-12 col-md-12 col-sm-12">
                     <div className="mb-3">
                       <div className="d-flex justify-content-between">
                         <label className="form-label">
@@ -205,7 +205,7 @@ const EditCategory = () => {
                         );
                       })}
                     </div>
-                  </div>
+                  </div> */}
                   <div className="col-lg-12 col-md-12 col-sm-12">
                     <div className="mb-3">
                       <label className="form-label">

@@ -6,10 +6,12 @@ import { RxCrossCircled } from "react-icons/rx";
 import { AiFillPlusSquare, AiFillMinusSquare } from "react-icons/ai";
 import Swal from "sweetalert2";
 import { Oval } from "react-loader-spinner";
+import { useNavigate } from "react-router";
 
 const URL = import.meta.env.VITE_URL;
 
 const AddCategory = () => {
+  const  navigate =useNavigate()
   const [key, setKey] = useState(Date.now());
   const [categoryvisible, setcategoryvisible] = useState(false);
   const [categorymainmenu, setcategorymainmenu] = useState(false);
@@ -84,7 +86,7 @@ const AddCategory = () => {
             icon: data.mess, // 'success', 'error', 'warning', 'info', or 'question'
             confirmButtonText: "Ok",
           });
-          // navigate("/list-catagory");
+          navigate("/admin/categories");
         } else {
           Swal.fire({
             title: data.text,
@@ -127,7 +129,7 @@ const AddCategory = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-lg-12 col-md-12 col-sm-12">
+                  {/* <div className="col-lg-12 col-md-12 col-sm-12">
                     <div className="mb-3">
                       <div className="d-flex justify-content-between">
                         <label className="form-label">
@@ -170,7 +172,7 @@ const AddCategory = () => {
                         );
                       })}
                     </div>
-                  </div>
+                  </div> */}
                   <div className="col-lg-12 col-md-12 col-sm-12">
                     <div className="mb-3">
                       <label className="form-label">
