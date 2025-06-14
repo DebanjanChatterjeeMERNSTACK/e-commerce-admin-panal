@@ -308,7 +308,7 @@ const AddCategory = () => {
                         </div> */}
 
                 <div className="row">
-                  <div className="col-lg-12 col-md-12 col-sm-12">
+                  {/* <div className="col-lg-12 col-md-12 col-sm-12">
                     <div className="mb-3">
                       <div className="row">
                         <div className="col-sm-4 col-xs-12">
@@ -408,7 +408,7 @@ const AddCategory = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   <div className="col-lg-12 col-md-12 col-sm-12">
                     <div className="mb-3">
                       <label className="form-label w-100">Image</label>
