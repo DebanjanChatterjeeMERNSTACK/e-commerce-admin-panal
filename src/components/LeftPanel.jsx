@@ -8,6 +8,8 @@ import { IoIosArrowForward } from "react-icons/io";
 import { PiNoteFill } from "react-icons/pi";
 import { IoSettings } from "react-icons/io5";
 import { FaPaintbrush } from "react-icons/fa6";
+import { BiSolidCategoryAlt } from "react-icons/bi";
+import { AiOutlineDingtalk, AiOutlineFileProtect } from "react-icons/ai";
 
 const LeftPanel = ({ sidebarToggle }) => {
   // State to track the active accordion sections
@@ -71,7 +73,7 @@ const LeftPanel = ({ sidebarToggle }) => {
                     onClick={() => toggleAccordion(1)}
                   >
                     <span className="navicon">
-                      <FaStore />
+                     <AiOutlineFileProtect />
                     </span>
                     Pages
                     <span
@@ -271,7 +273,7 @@ const LeftPanel = ({ sidebarToggle }) => {
                     onClick={() => toggleAccordion(51)}
                   >
                     <span className="navicon">
-                      <FaStore />
+                      <AiOutlineDingtalk />
                     </span>
                     Section
                     <span
@@ -333,7 +335,7 @@ const LeftPanel = ({ sidebarToggle }) => {
                     onClick={() => toggleAccordion(3)}
                   >
                     <span className="navicon">
-                      <FaStore />
+                      <BiSolidCategoryAlt />
                     </span>
                     Categories
                     <span

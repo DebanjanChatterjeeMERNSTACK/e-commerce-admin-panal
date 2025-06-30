@@ -23,14 +23,14 @@ const Header = ({sidebarToggle, setSidebarToggle}) => {
                 </div>
                 <div className='topbar-menu d-flex align-items-center gap-3'>
                     <ul className='topbar-menu d-flex align-items-center gap-3'>
-                        <li>
+                        {/* <li>
                         <div className='top_notification'>
                           <Link>
                           <div className='noti_num'>{0}</div>
                           <IoIosNotificationsOutline />
                           </Link>
                         </div>
-                        </li> 
+                        </li>  */}
                         <li className='dropdown'>
                           <button className='nav-link dropdown-toggle arrow-none nav-user px-2' onClick={toggleDropdown} aria-expanded={isOpen ? "true" : "false"}>
                             <span className='account_user_avatar'>
